@@ -1,0 +1,371 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import migrations, models
+from django.conf import settings
+import sortedm2m.fields
+import orderdesk.models
+
+
+class Migration(migrations.Migration):
+
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Summary',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('client_name', models.TextField()),
+                ('added_by', models.TextField()),
+                ('barcode', models.TextField()),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('date_created', models.DateTimeField(auto_now_add=True)),
+                ('target_address_name', models.TextField()),
+                ('target_address_id', models.CharField(max_length=30, null=True, verbose_name='customer ID', blank=True)),
+            ],
+            options={
+                'verbose_name': 'summary',
+                'db_table': 'summary',
+                'managed': False,
+                'verbose_name_plural': 'summary',
+            },
+        ),
+        migrations.CreateModel(
+            name='Address',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('customer_id', models.CharField(max_length=30, null=True, verbose_name='customer ID', blank=True)),
+                ('nilo_id', models.CharField(max_length=30, null=True, verbose_name='Nilo ID', blank=True)),
+                ('language', models.CharField(default=None, choices=[(b'de', 'German'), (b'fr', 'French'), (b'it', 'Italian'), (b'en', 'English')], max_length=10, blank=True, null=True, verbose_name='language')),
+                ('name', models.CharField(default=b'', max_length=100, verbose_name='name')),
+                ('group_name', models.CharField(max_length=100, null=True, blank=True)),
+                ('suffix', models.CharField(default=b'', max_length=30, verbose_name='suffix', blank=True)),
+                ('street', models.CharField(default=b'', max_length=255)),
+                ('zip', models.CharField(default=b'', max_length=20)),
+                ('city', models.CharField(default=b'', max_length=40)),
+                ('routing_number', models.CharField(max_length=30, null=True, blank=True)),
+                ('date_created', models.DateTimeField(auto_now_add=True)),
+                ('can_delete_orders', models.BooleanField(default=True)),
+                ('can_export', models.BooleanField(default=False)),
+                ('barcode_prefix', models.CharField(max_length=20, null=True, blank=True)),
+                ('barcode_length', models.IntegerField(null=True, blank=True)),
+                ('sender_groups', models.ManyToManyField(related_name='used_as_sender', verbose_name='sender groups', to='orderdesk.AddressUsageGroup', blank=True)),
+                ('client', models.ForeignKey(blank=True, to='orderdesk.Client', null=True)),
+                ('recipient_groups', models.ManyToManyField(related_name='used_by', verbose_name='recipient groups', to='orderdesk.AddressUsageGroup', blank=True)),
+                ('user', models.OneToOneField(null=True, blank=True, to=settings.AUTH_USER_MODEL)),
+                ('views', sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='address_views', to='orderdesk.View', blank=True)),
+            ],
+            options={
+                'db_table': 'address',
+                'verbose_name': 'address',
+                'verbose_name_plural': 'addresses',
+            },
+        ),
+        migrations.CreateModel(
+            name='AddressUsageGroup',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('date_created', models.DateTimeField(auto_now_add=True)),
+                ('addresses', models.ManyToManyField(related_name='usable_addresses', to='orderdesk.Address')),
+            ],
+            options={
+                'db_table': 'address_usage_group',
+                'verbose_name': 'address usage group',
+                'verbose_name_plural': 'address usage groups',
+            },
+        ),
+        migrations.CreateModel(
+            name='Client',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('logo', models.CharField(max_length=255)),
+                ('entries_per_page', models.IntegerField(default=20, verbose_name='entries per page')),
+                ('can_export', models.BooleanField(default=False)),
+                ('client', models.BooleanField(default=False)),
+                ('fields', sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='clients', verbose_name='fields', to='orderdesk.Field', blank=True)),
+                ('label', models.ForeignKey(default=None, blank=True, to='orderdesk.Label', null=True)),
+                ('views', sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='clients', verbose_name='views', to='orderdesk.View')),
+            ],
+            options={
+                'db_table': 'client',
+                'verbose_name': 'client',
+                'verbose_name_plural': 'clients',
+            },
+        ),
+        migrations.CreateModel(
+            name='Field',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('label', models.CharField(max_length=100, verbose_name='label')),
+                ('label_de', models.CharField(max_length=100, null=True, verbose_name='label')),
+                ('label_fr', models.CharField(max_length=100, null=True, verbose_name='label')),
+                ('label_it', models.CharField(max_length=100, null=True, verbose_name='label')),
+                ('label_en', models.CharField(max_length=100, null=True, verbose_name='label')),
+                ('default_value', models.TextField(verbose_name='default value', blank=True)),
+                ('description', models.TextField(verbose_name='description', blank=True)),
+                ('help_text', models.TextField(verbose_name='help text', blank=True)),
+                ('help_text_de', models.TextField(null=True, verbose_name='help text', blank=True)),
+                ('help_text_fr', models.TextField(null=True, verbose_name='help text', blank=True)),
+                ('help_text_it', models.TextField(null=True, verbose_name='help text', blank=True)),
+                ('help_text_en', models.TextField(null=True, verbose_name='help text', blank=True)),
+                ('editable', models.BooleanField(default=True, verbose_name='editable')),
+                ('show_input', models.BooleanField(default=True, help_text='Specifies if an input field should be shown', verbose_name='show input')),
+                ('show_in_list', models.BooleanField(default=True, help_text='Specifies if this field should appear in the listings', verbose_name='show in list')),
+                ('show_placeholder', models.BooleanField(default=True, help_text='Specifies if the placeholder of the input should be shown or not', verbose_name='show placeholder')),
+                ('save_value', models.BooleanField(default=True, help_text='Specifies if the value of this field should be saved', verbose_name='save value')),
+                ('required', models.BooleanField(default=True, verbose_name='required')),
+                ('disabled', models.BooleanField(default=False, verbose_name='disabled')),
+                ('size', models.IntegerField(help_text=b'This value is ranged from 1 to 12 (see http://getbootstrap.com/css/#grid)', null=True, verbose_name='size', blank=True)),
+                ('target_attribute', models.CharField(help_text='Used for calculated fields', max_length=20, verbose_name='target attribute', blank=True)),
+                ('limit', models.IntegerField(help_text='Used only for numeric fields', null=True, verbose_name='limit', blank=True)),
+                ('classes', models.CharField(max_length=250, verbose_name='classes', blank=True)),
+                ('listing_classes', models.CharField(max_length=250, verbose_name='listing classes', blank=True)),
+                ('kind', models.CharField(default=None, max_length=30, verbose_name='kind', choices=[(b'text', 'Text'), (b'num', 'Numeric')])),
+                ('from_system', models.BooleanField(default=False, verbose_name='Defined by the system', editable=False)),
+                ('inline_editable', models.BooleanField(default=False, verbose_name='show in inline editor')),
+            ],
+            options={
+                'db_table': 'field',
+                'verbose_name': 'field',
+                'verbose_name_plural': 'fields',
+            },
+            bases=(orderdesk.models.ValidateModelMixin, models.Model),
+        ),
+        migrations.CreateModel(
+            name='FieldValue',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('value', models.TextField(blank=True)),
+                ('field', models.ForeignKey(related_name='field_values', to='orderdesk.Field')),
+                ('order', models.ForeignKey(related_name='field_values', to='orderdesk.Order')),
+            ],
+            options={
+                'db_table': 'field_value',
+                'verbose_name': 'field value',
+                'verbose_name_plural': 'field values',
+            },
+            bases=(orderdesk.models.ValidateModelMixin, models.Model),
+        ),
+        migrations.CreateModel(
+            name='GroupMember',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('can_view', models.BooleanField(default=False)),
+                ('address', models.ForeignKey(related_name='view_groups', to='orderdesk.Address')),
+                ('order_view_group', models.ForeignKey(related_name='members', to='orderdesk.OrderViewGroup', null=True)),
+            ],
+            options={
+                'db_table': 'group_member',
+                'verbose_name': 'group member',
+                'verbose_name_plural': 'group members',
+            },
+        ),
+        migrations.CreateModel(
+            name='Label',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('logo', models.CharField(max_length=255, null=True, blank=True)),
+                ('width', models.IntegerField(default=529)),
+                ('height', models.IntegerField(default=340)),
+                ('background_color', models.CharField(default=b'FFFFFF', max_length=8)),
+                ('font_color', models.CharField(default=b'000000', max_length=8)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='LabelField',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('width', models.IntegerField(default=None, null=True, blank=True)),
+                ('height', models.IntegerField(default=None, null=True, blank=True)),
+                ('pos_x', models.IntegerField()),
+                ('pos_y', models.IntegerField()),
+                ('field', models.ForeignKey(to='orderdesk.Field')),
+                ('label', models.ForeignKey(to='orderdesk.Label')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Link',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('label', models.CharField(max_length=200)),
+                ('label_de', models.CharField(max_length=200, null=True)),
+                ('label_fr', models.CharField(max_length=200, null=True)),
+                ('label_it', models.CharField(max_length=200, null=True)),
+                ('label_en', models.CharField(max_length=200, null=True)),
+            ],
+            options={
+                'db_table': 'link',
+                'verbose_name': 'link',
+                'verbose_name_plural': 'links',
+            },
+        ),
+        migrations.CreateModel(
+            name='LinkURL',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('url', models.TextField()),
+                ('url_de', models.TextField(null=True)),
+                ('url_fr', models.TextField(null=True)),
+                ('url_it', models.TextField(null=True)),
+                ('url_en', models.TextField(null=True)),
+                ('link', models.ForeignKey(to='orderdesk.Link')),
+            ],
+            options={
+                'db_table': 'link_url',
+                'verbose_name': 'link URL',
+                'verbose_name_plural': 'link URLs',
+            },
+        ),
+        migrations.CreateModel(
+            name='Order',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_deleted', models.BooleanField(default=False, verbose_name=b'deleted')),
+                ('date_created', models.DateTimeField(auto_now_add=True)),
+                ('added_by', models.ForeignKey(to='orderdesk.Address')),
+                ('status', models.ForeignKey(to='orderdesk.Status')),
+            ],
+            options={
+                'ordering': ['-pk'],
+                'db_table': 'order',
+                'verbose_name': 'order',
+                'verbose_name_plural': 'orders',
+            },
+        ),
+        migrations.CreateModel(
+            name='OrderViewGroup',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+            ],
+            options={
+                'db_table': 'order_view_group',
+                'verbose_name': 'order view group',
+                'verbose_name_plural': 'order view groups',
+            },
+        ),
+        migrations.CreateModel(
+            name='PossibleValue',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('identifier', models.CharField(max_length=20)),
+                ('value', models.CharField(max_length=100)),
+                ('value_de', models.CharField(max_length=100, null=True)),
+                ('value_fr', models.CharField(max_length=100, null=True)),
+                ('value_it', models.CharField(max_length=100, null=True)),
+                ('value_en', models.CharField(max_length=100, null=True)),
+                ('client', models.ForeignKey(to='orderdesk.Client')),
+                ('field', models.ForeignKey(related_name='possible_values', to='orderdesk.Field')),
+            ],
+            options={
+                'ordering': ['id'],
+                'db_table': 'possible_value',
+                'verbose_name': 'possible value',
+                'verbose_name_plural': 'possible values',
+            },
+        ),
+        migrations.CreateModel(
+            name='Status',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name_de', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_fr', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_it', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_en', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('can_delete', models.BooleanField(default=True)),
+            ],
+            options={
+                'db_table': 'status',
+                'verbose_name': 'status',
+                'verbose_name_plural': 'status',
+            },
+        ),
+        migrations.CreateModel(
+            name='View',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name_de', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_fr', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_it', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('name_en', models.CharField(max_length=40, null=True, verbose_name='name')),
+                ('admin_name', models.CharField(max_length=40, verbose_name='admin name')),
+                ('description', models.TextField(blank=True)),
+                ('is_editable', models.BooleanField()),
+                ('additional_fields', sortedm2m.fields.SortedManyToManyField(help_text=None, to='orderdesk.Field', verbose_name='List fields')),
+                ('status', models.ForeignKey(to='orderdesk.Status')),
+            ],
+            options={
+                'db_table': 'view',
+                'verbose_name': 'view',
+                'verbose_name_plural': 'views',
+            },
+        ),
+        # migrations.AddField(
+        #     model_name='order',
+        #     name='status',
+        #     field=models.ForeignKey(to='orderdesk.Status'),
+        # ),
+        # migrations.AddField(
+        #     model_name='groupmember',
+        #     name='order_view_group',
+        #     field=models.ForeignKey(related_name='members', to='orderdesk.OrderViewGroup', null=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='fieldvalue',
+        #     name='order',
+        #     field=models.ForeignKey(related_name='field_values', to='orderdesk.Order'),
+        # ),
+        # migrations.AddField(
+        #     model_name='client',
+        #     name='fields',
+        #     field=sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='clients', verbose_name='fields', to='orderdesk.Field', blank=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='client',
+        #     name='label',
+        #     field=models.ForeignKey(default=None, blank=True, to='orderdesk.Label', null=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='client',
+        #     name='views',
+        #     field=sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='clients', verbose_name='views', to='orderdesk.View'),
+        # ),
+        # migrations.AddField(
+        #     model_name='address',
+        #     name='client',
+        #     field=models.ForeignKey(blank=True, to='orderdesk.Client', null=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='address',
+        #     name='recipient_groups',
+        #     field=models.ManyToManyField(related_name='used_by', verbose_name='recipient groups', to='orderdesk.AddressUsageGroup', blank=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='address',
+        #     name='user',
+        #     field=models.OneToOneField(null=True, blank=True, to=settings.AUTH_USER_MODEL),
+        # ),
+        # migrations.AddField(
+        #     model_name='address',
+        #     name='views',
+        #     field=sortedm2m.fields.SortedManyToManyField(help_text=None, related_name='address_views', to='orderdesk.View', blank=True),
+        # ),
+        migrations.AlterUniqueTogether(
+            name='possiblevalue',
+            unique_together=set([('identifier', 'field')]),
+        ),
+    ]

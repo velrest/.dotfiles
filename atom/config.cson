@@ -1,0 +1,66 @@
+"*":
+  "atom-material-ui":
+    colors:
+      abaseColor: "#5c6bc0"
+      paintCursor: true
+      predefinedColor: "Indigo"
+    tabs:
+      tintedTabBar: true
+    ui:
+      panelContrast: true
+      panelShadows: true
+  "atom-terminal":
+    app: "/usr/bin/bash"
+  "autocomplete-python":
+    showTooltips: true
+    useSnippets: "required"
+  autosave:
+    enabled: true
+  core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "linter-flake8"
+      "linter"
+    ]
+    projectHome: "/home/jonas/Projects"
+    telemetryConsent: "limited"
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax"
+    ]
+  editor:
+    fontSize: 16
+  "exception-reporting":
+    userId: "d174ba51-7c01-e733-00b4-3c33742e1215"
+  "file-icons": {}
+  "keybinding-cheatsheet": {}
+  linter:
+    errorPanelHeight: 156
+    ignoreVCSIgnoredFiles: false
+  "linter-flake8":
+    executablePath: "/usr/bin/flake8"
+    projectConfigFile: [
+      ".flake8"
+    ]
+  minimap:
+    plugins:
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "platformio-ide-terminal":
+    core: {}
+  "python-iresolve": {}
+  "terminal-plus":
+    core:
+      shell: "/usr/bin/bash"
+      workingDirectory: "Active File"
+    toggles:
+      autoClose: true
+  "vim-mode-plus":
+    ignoreCaseForSearch: true
+  welcome:
+    showOnStartup: false
+".django.python.source":
+  editor:
+    autoIndent: false

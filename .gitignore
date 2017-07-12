@@ -1,0 +1,26 @@
+# vim
+plugin-backup
+.vimrc.swp
+bundle/
+
+# atom
+blob-store
+compile-cache
+dev
+storage
+.apm
+.node-gyp
+.npm
+packages
+nohup.out
+
+# swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
