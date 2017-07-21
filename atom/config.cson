@@ -1,9 +1,7 @@
 "*":
   "atom-material-ui":
     colors:
-      abaseColor: "#5c6bc0"
       paintCursor: true
-      predefinedColor: "Indigo"
     tabs:
       tintedTabBar: true
     ui:

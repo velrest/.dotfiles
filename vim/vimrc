@@ -49,8 +49,9 @@ Plugin 'https://github.com/editorconfig/editorconfig-vim.git'
 Plugin 'https://github.com/scrooloose/nerdcommenter.git'
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
 Plugin 'https://github.com/itchyny/lightline.vim.git'
-Plugin 'https://github.com/davidhalter/jedi-vim.git'
+Plugin 'davidhalter/jedi-vim.git'
 Plugin 'ervandew/supertab'
+Plugin 'jdkanani/vim-material-theme'
 
 " -----------------------------------------------------------------------
 
@@ -86,6 +87,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let mapleader="ö"
 map <leader>f :NERDTreeFind<cr>
 map <leader>t :NERDTreeToggle<cr>
+vnoremap // y/<C-R>"<CR>
 " -----------------------------------------------
 
 " Snippets --------------------------------------
@@ -112,7 +114,7 @@ set shiftwidth=4
 
 set background=dark
 set termguicolors " if you want to run vim in a terminal
-colorscheme breezy
+colorscheme material-theme
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
