@@ -40,18 +40,21 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
-Plugin 'https://github.com/mtscout6/syntastic-local-eslint.vim'
-Plugin 'https://github.com/flazz/vim-colorschemes.git'
-Plugin 'https://github.com/scrooloose/nerdtree.git'
-Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plugin 'https://github.com/tpope/vim-fugitive.git'
-Plugin 'https://github.com/editorconfig/editorconfig-vim.git'
-Plugin 'https://github.com/scrooloose/nerdcommenter.git'
-Plugin 'https://github.com/vim-syntastic/syntastic.git'
-Plugin 'https://github.com/itchyny/lightline.vim.git'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'flazz/vim-colorschemes.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'ctrlpvim/ctrlp.vim.git'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'editorconfig/editorconfig-vim.git'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'vim-syntastic/syntastic.git'
+Plugin 'itchyny/lightline.vim.git'
 Plugin 'davidhalter/jedi-vim.git'
 Plugin 'ervandew/supertab'
 Plugin 'jdkanani/vim-material-theme'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'mileszs/ack.vim'
+
 
 " -----------------------------------------------------------------------
 
@@ -148,3 +151,23 @@ let g:syntastic_check_on_wq = 0
 
 " Jedi
 let g:jedi#use_tabs_not_buffers = 1
+
+" vim-markdown-preview
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=0
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_temp_file=0
+
+" ack vim
+" Use the silver searcher if available
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" :Ack normally jumps to the first file found, while :Ack! does not.
+" Therefore, swap them around
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+cnoreabbrev AckFromSearch AckFromSearch!
+xnoremap <Leader>a "sy:Ack! <C-r>=fnameescape(@s)<CR><CR>

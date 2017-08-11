@@ -184,11 +184,30 @@ bindsym $mod+Delete mode "$mode_system"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+	status_command i3status
+	mode hide
+	colors {
+		background #303f9f
+		statusline #ffffff
+		separator #ffffff
+		inactive_workspace #3f51b5  #3f51b5  #ffffff 
+		active_workspace #3f51b5  #3f51b5  #ffffff 
+		focused_workspace #7986cb #7986cb #ffffff
+		
+	}
+	
 }
 
 # Set dekstop background
 exec --no-startup-id feh --bg-scale ~/.bg
+
+hide_edge_borders smart
+# class					 border  backgr. text    indicator child_border
+client.focused			 #7986cb #7986cb #ffffff #7986cb   #7986cb 
+client.focused_inactive #3f51b5 #3f51b5 #ffffff #3f51b5   #3f51b5 
+client.unfocused		 #303f9f #303f9f #ffffff #303f9f   #303f9f
+
+
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
