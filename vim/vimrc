@@ -86,6 +86,9 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " Vim ___________________________________________
 
+"Shame on me
+set mouse=a
+
 " Custom Keys -----------------------------------
 let mapleader="ö"
 map <leader>f :NERDTreeFind<cr>
