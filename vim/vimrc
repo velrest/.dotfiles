@@ -41,7 +41,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'flazz/vim-colorschemes.git'
+"Plugin 'flazz/vim-colorschemes.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'ctrlpvim/ctrlp.vim.git'
 Plugin 'tpope/vim-fugitive.git'
@@ -52,7 +52,7 @@ Plugin 'itchyny/lightline.vim.git'
 Plugin 'davidhalter/jedi-vim.git'
 Plugin 'ervandew/supertab'
 Plugin 'jdkanani/vim-material-theme'
-Plugin 'JamshedVesuna/vim-markdown-preview'
+"Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'mileszs/ack.vim'
 
 
@@ -76,12 +76,6 @@ filetype plugin indent on    " required
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 
-" Ctrl + p ______________________________________
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-    \ 'AcceptSelection("t")': ['<cr>'],
-    \ }
-map <C-T> :CtrlPBuffer<CR>
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Vim ___________________________________________
@@ -98,8 +92,8 @@ vnoremap // y/<C-R>"<CR>
 
 " Snippets --------------------------------------
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/ultisnips']
 "------------------------------------------------
 
@@ -118,6 +112,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+syntax enable
 set background=dark
 set termguicolors " if you want to run vim in a terminal
 colorscheme material-theme
