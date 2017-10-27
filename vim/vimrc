@@ -54,6 +54,7 @@ Plugin 'ervandew/supertab'
 Plugin 'jdkanani/vim-material-theme'
 "Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'mileszs/ack.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 
 " -----------------------------------------------------------------------
@@ -169,3 +170,10 @@ nnoremap <Leader>a :Ack!<Space>
 
 cnoreabbrev AckFromSearch AckFromSearch!
 xnoremap <Leader>a "sy:Ack! <C-r>=fnameescape(@s)<CR><CR>
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2A363E
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#37474F
