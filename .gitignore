@@ -1,7 +1,12 @@
+# dbd what to do with them:
+bash
+hyper
+
 # vim
 plugin-backup
 .vimrc.swp
 bundle/
+plugged
 
 # atom
 blob-store

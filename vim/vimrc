@@ -1,78 +1,31 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-" Vundle ________________________________________
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" Examples --------------------------------------------------------------
-
-" Keep Plugin commands between vundle#begin/end.
-
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" -----------------------------------------------------------------------
-
-" Installed -------------------------------------------------------------
-
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
-"Plugin 'flazz/vim-colorschemes.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'ctrlpvim/ctrlp.vim.git'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'editorconfig/editorconfig-vim.git'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'vim-syntastic/syntastic.git'
-Plugin 'itchyny/lightline.vim.git'
-Plugin 'davidhalter/jedi-vim.git'
-Plugin 'ervandew/supertab'
-Plugin 'jdkanani/vim-material-theme'
-"Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'mileszs/ack.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+"Plug 'mtscout6/syntastic-local-eslint.vim'
+"Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'tpope/vim-fugitive'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-syntastic/syntastic'
+Plug 'itchyny/lightline.vim'
+"Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
+Plug 'jdkanani/vim-material-theme'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'mileszs/ack.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'sbdchd/neoformat'
+Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+Plug 'mustache/vim-mustache-handlebars'
 
 
-" -----------------------------------------------------------------------
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+call plug#end()            " required
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-" see :h vundle for more details or wiki for FAQ
-
 " NERDTree ______________________________________
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
@@ -149,13 +102,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Jedi
-let g:jedi#use_tabs_not_buffers = 1
+"let g:jedi#use_tabs_not_buffers = 1
 
 " vim-markdown-preview
-let vim_markdown_preview_github=1
-let vim_markdown_preview_toggle=0
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_temp_file=0
+"let vim_markdown_preview_github=1
+"let vim_markdown_preview_toggle=0
+"let vim_markdown_preview_hotkey='<C-m>'
+"let vim_markdown_preview_temp_file=0
 
 " ack vim
 " Use the silver searcher if available
@@ -177,3 +130,11 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2A363E
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#37474F
+
+
+" Prettier
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.css,*.scss,*.less PrettierAsync
