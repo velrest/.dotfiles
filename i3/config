@@ -209,6 +209,7 @@ client.focused_inactive #3f51b5 #3f51b5 #ffffff #3f51b5   #3f51b5
 client.unfocused		 #303f9f #303f9f #ffffff #303f9f   #303f9f
 
 for_window [title="WhatsApp"] floating enable,floating_maximum_size 500 x 500,new_float none
+new_window none
 
 exec --no-startup-id xrandr --output DP-2 --off --output DP-3 --off --output LVDS-1 --off
 exec --no-startup-id xrandr --output DP-3 --auto --output DP-2 --primary --right-of DP-3
