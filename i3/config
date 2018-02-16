@@ -37,7 +37,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 bindsym $mod+Shift+Return exec hyper
 
 # kill focused window
@@ -188,12 +188,12 @@ bar {
 	status_command i3status
 	mode hide
 	colors {
-		background #303f9f
+		background #263238
 		statusline #ffffff
 		separator #ffffff
-		inactive_workspace #3f51b5  #3f51b5  #ffffff 
-		active_workspace #3f51b5  #3f51b5  #ffffff 
-		focused_workspace #7986cb #7986cb #ffffff
+		inactive_workspace #263238  #263238  #ffffff 
+		active_workspace #607D8B  #607D8B  #ffffff 
+		focused_workspace #607D8B  #607D8B #ffffff
 		urgent_workspace #7986cb #7986cb #ffffff
 	}
 	
@@ -201,15 +201,16 @@ bar {
 
 
 # Set dekstop background
-exec --no-startup-id nitrogen --set-auto ~/.bg-wide-firewatch-blue
 hide_edge_borders smart
 # class					 border  backgr. text    indicator child_border
-client.focused			 #7986cb #7986cb #ffffff #7986cb   #7986cb 
-client.focused_inactive #3f51b5 #3f51b5 #ffffff #3f51b5   #3f51b5 
-client.unfocused		 #303f9f #303f9f #ffffff #303f9f   #303f9f
+client.focused			 #455A64 #455A64 #ffffff #607D8B   #607D8B 
+client.focused_inactive #37474F #37474F #ffffff #37474F   #37474F 
+client.unfocused		 #263238 #263238 #ffffff #263238   #263238
 
 for_window [title="WhatsApp"] floating enable,floating_maximum_size 500 x 500,new_float none
 new_window none
 
-exec --no-startup-id xrandr --output DP-2 --off --output DP-3 --off --output LVDS-1 --off
-exec --no-startup-id xrandr --output DP-3 --auto --output DP-2 --primary --right-of DP-3
+exec --no-startup-id bash ~/.i3/xrandr-setup.sh
+exec --no-startup-id nitrogen --set-auto ~/.bg-wide-firewatch-blue
+exec --no-startup-id redshift-gtk
+exec --no-startup-id notify-send -u critical -t 120000 "Timed und Arbeitsjournal" "Mach nos timedctl und Arbeitsjournal"
