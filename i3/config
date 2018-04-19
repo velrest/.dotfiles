@@ -207,10 +207,10 @@ client.focused			 #455A64 #455A64 #ffffff #607D8B   #607D8B
 client.focused_inactive #37474F #37474F #ffffff #37474F   #37474F 
 client.unfocused		 #263238 #263238 #ffffff #263238   #263238
 
-for_window [title="WhatsApp"] floating enable,floating_maximum_size 500 x 500,new_float none
 new_window none
 
 exec --no-startup-id bash ~/.i3/xrandr-setup.sh
 exec --no-startup-id nitrogen --set-auto ~/.bg-wide-firewatch-blue
 exec --no-startup-id redshift-gtk
+exec --no-startup-id glances -01w
 exec --no-startup-id notify-send -u critical -t 120000 "Timed und Arbeitsjournal" "Mach nos timedctl und Arbeitsjournal"
