@@ -98,6 +98,10 @@ map <leader>t :NERDTreeToggle<cr>
 vnoremap // y/<C-R>"<CR>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
 set clipboard=unnamedplus
 " _______________________________________________
 
