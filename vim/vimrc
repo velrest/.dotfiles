@@ -100,9 +100,18 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
+inoremap <silent> <C-S>         <C-C>:update<CR>
 
-set clipboard=unnamedplus
+noremap <silent> <C-Q>          :quit<CR>
+vnoremap <silent> <C-Q>         <C-C>:quit<CR>
+inoremap <silent> <C-Q>         <C-C>:quit<CR>
+
+noremap <silent> <C-A-S>          :wa<CR>
+vnoremap <silent> <C-A-S>         <C-C>:wa<CR>
+inoremap <silent> <C-A-S>         <C-C>:wa<CR>
+
+" Not as usefull as thougth
+"set clipboard=unnamedplus
 " _______________________________________________
 
 
