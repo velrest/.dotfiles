@@ -47,6 +47,8 @@ Plug 'maximbaz/lightline-ale'
 
 " show git changes in vim
 Plug 'airblade/vim-gitgutter'
+"Indent Guides
+Plug 'nathanaelkane/vim-indent-guides'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
@@ -233,3 +235,10 @@ let g:prettier#config#parser = 'babylon'
 
 autocmd BufWritePre *.js,*.css,*.scss,*.less PrettierAsync
 " _______________________________________________
+
+" Indent Guides ...................................
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2C313C ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#343945 ctermbg=4
+" _________________________________________________
