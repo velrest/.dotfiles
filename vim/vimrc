@@ -25,8 +25,6 @@ Plug 'prettier/vim-prettier', {
 Plug 'mustache/vim-mustache-handlebars'
 " theme
 Plug 'arcticicestudio/nord-vim'
-" icons colors for nerdtree PEROFRMANCE ISSUES
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " icons for nerdtree
 Plug 'ryanoasis/vim-devicons'
 " completion
@@ -123,11 +121,6 @@ call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 " _______________________________________________
 
 " NERDTree -------------------------------------
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeDisableExactMatchHighlight = 1
-let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['html', 'hbs', 'json', 'js', 'css', 'license', 'yml', 'md', 'conf', 'sh', 'sql', 'vim']
-
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
@@ -269,3 +262,32 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#2C313C ctermbg=4
 " YAML --------------------------------------------
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 " _________________________________________________
+"
+" NERDTress File highlighting ---------------------
+function! NERDTreeHighlightFile(extension, fg, guifg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg=none ctermfg='. a:fg .' guibg=#2E3440 guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'green')
+call NERDTreeHighlightFile('ini', 'yellow', 'yellow')
+call NERDTreeHighlightFile('md', 'blue', '#3366FF')
+call NERDTreeHighlightFile('yml', 'yellow', 'yellow')
+call NERDTreeHighlightFile('config', 'yellow', 'yellow')
+call NERDTreeHighlightFile('conf', 'yellow', 'yellow')
+call NERDTreeHighlightFile('json', 'yellow', 'yellow')
+call NERDTreeHighlightFile('html', 'yellow', 'yellow')
+call NERDTreeHighlightFile('styl', 'cyan', 'cyan')
+call NERDTreeHighlightFile('css', 'cyan', 'cyan')
+call NERDTreeHighlightFile('coffee', 'Red', 'red')
+call NERDTreeHighlightFile('js', 'Red', '#ffa500')
+call NERDTreeHighlightFile('php', 'Magenta', '#ff00ff')
+call NERDTreeHighlightFile('ds_store', 'Gray', '#686868')
+call NERDTreeHighlightFile('gitconfig', 'Gray', '#686868')
+call NERDTreeHighlightFile('gitignore', 'Gray', '#686868')
+call NERDTreeHighlightFile('bashrc', 'Gray', '#686868')
+call NERDTreeHighlightFile('bashprofile', 'Gray', '#686868')
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
