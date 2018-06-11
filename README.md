@@ -6,3 +6,6 @@ Make a symlink for every folder in the repo to your home dir.
 * [Install plugged](https://github.com/junegunn/vim-plug) then make `PlugInstall` in Vim
 
 __Dont forget to make a symlink: `ln -s ~/.vim/vimrc ~/.vimrc`__
+
+# i3
+create a symlink to your background (`.dotfiles/i3/bg`) if you want one.
