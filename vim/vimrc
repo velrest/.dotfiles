@@ -44,6 +44,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 " To display gitbranch in lightline
 Plug 'itchyny/vim-gitbranch'
+" toggle booleans
+Plug 'https://github.com/sagarrakshe/toggle-bool'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
@@ -93,7 +95,8 @@ noremap <Right> <NOP>
 let mapleader="ö"
 map <leader>f :NERDTreeFind<cr>
 map <leader>t :NERDTreeToggle<cr>
-vnoremap // y/<C-R>"<CR>
+map <leader>tb :ToggleBool<cr>
+map <leader>so :so %<cr>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 noremap <silent> <C-S>          :update<CR>
