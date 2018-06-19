@@ -103,17 +103,18 @@ noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-C>:update<CR>
 
-noremap <silent> <C-A-S>          :wa<CR>
-vnoremap <silent> <C-A-S>         <C-C>:wa<CR>
-inoremap <silent> <C-A-S>         <C-C>:wa<CR>
-
 noremap <silent> <C-Q>          :quit<CR>
 vnoremap <silent> <C-Q>         <C-C>:quit<CR>
 inoremap <silent> <C-Q>         <C-C>:quit<CR>
 
-noremap <silent> <C-A-Q>          :quitall<CR>
-vnoremap <silent> <C-A-Q>         <C-C>:quitall<CR>
-inoremap <silent> <C-A-Q>         <C-C>:quitall<CR>
+"ALE
+noremap <silent> <leader>lf :ALEFirst<cr>
+noremap <silent> <leader>ln :ALENext<cr>
+noremap <silent> <leader>lp :ALEPrevious<cr>
+noremap <silent> <leader>ll :ALELast<cr>
+"ACK
+noremap <Leader>a :Ack!<Space>
+xnoremap <Leader>a sy:Ack! <C-r>=fnameescape(@s)<CR><CR>
 " _______________________________________________
 
 
@@ -211,10 +212,7 @@ endif
  ":Ack normally jumps to the first file found, while :Ack! does not.
  "Therefore, swap them around
 cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
-
 cnoreabbrev AckFromSearch AckFromSearch!
-xnoremap <Leader>a sy:Ack! <C-r>=fnameescape(@s)<CR><CR>
 " _______________________________________________
 
 
