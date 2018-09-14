@@ -1,0 +1,129 @@
+# console.log with text: value
+snippet clg2
+console.log('${1:text}', ${2:val})
+endsnippet
+
+# log
+snippet clg
+console.log(${2:val})
+endsnippet
+
+# log info
+snippet cli
+console.info(${2:val})
+endsnippet
+
+# log warning
+snippet clw
+console.warn(${2:val})
+endsnippet
+
+# log error
+snippet cle
+console.error(${2:val})
+endsnippet
+
+snippet author
+@author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+endsnippet
+
+# default import
+snippet ji
+import ${1:fields} from '${2:package}'
+endsnippet
+
+# named import
+snippet jim
+import {${1:fields}} from '${2:package}'
+endsnippet
+
+# arrow function
+snippet af
+(${1}) => ${2}
+endsnippet
+
+# function
+snippet f
+function ${1}(${2}) {
+	${3}
+}
+endsnippet
+
+# property function
+snippet pf
+${1}(${2}) {
+	${3}
+}
+endsnippet
+
+# ember
+
+# this.set
+snippet ts
+this.set('${1:text}', ${2:val})
+endsnippet
+
+# this.setProperties
+snippet tsp
+this.setProperties({${1:text}: ${2:val}})
+endsnippet
+
+# this.get
+snippet tg
+this.get('${1:text}')
+endsnippet
+
+# object.set
+snippet os
+${1:obj}.set('${2:text}', ${3:val})
+endsnippet
+
+# object.setProperties
+snippet osp
+${1:obj}.setProperties({${2:text}: ${3:val}})
+endsnippet
+
+# object.get
+snippet og
+${1:obj}.get('${3:text}')
+endsnippet
+
+# ember call super
+snippet super
+this._super(...arguments)
+endsnippet
+
+# model attribute of type string
+snippet mas
+,${1:var}: attr('string')
+endsnippet
+
+# model attribute of type number
+snippet man
+,${1:var}: attr('number')
+endsnippet
+
+# model attribute of type boolean
+snippet mab
+,${1:var}: attr('boolean')
+endsnippet
+
+# model attribute
+snippet ma
+,${1:var}: ${2:method}('${3:type}')
+endsnippet
+
+# test helper with await
+snippet th
+await ${1:stmt}('${2:selector}')
+endsnippet
+
+# factory attribute
+snippet fa
+${1:attr}: () => faker.${2},
+endsnippet
+
+# assert dom
+snippet ad
+assert.dom('${1:selector}').${2}(${3})
+endsnippet
