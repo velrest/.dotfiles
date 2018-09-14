@@ -45,7 +45,9 @@ Plug 'nathanaelkane/vim-indent-guides'
 " To display gitbranch in lightline
 Plug 'itchyny/vim-gitbranch'
 " toggle booleans
-Plug 'https://github.com/sagarrakshe/toggle-bool'
+Plug 'sagarrakshe/toggle-bool'
+" git integration
+Plug 'tpope/vim-fugitive'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
