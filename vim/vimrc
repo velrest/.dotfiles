@@ -48,6 +48,10 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'sagarrakshe/toggle-bool'
 " git integration
 Plug 'tpope/vim-fugitive'
+" gitlab integration for vim-fugitive
+Plug 'shumphrey/fugitive-gitlab.vim'
+" github integration for vim-fugitive
+Plug 'tpope/vim-rhubarb'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
@@ -271,10 +275,14 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#343945 ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#2C313C ctermbg=4
 " _________________________________________________
 
-" YAML --------------------------------------------
+" YAML [yaml-cs]
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-" _________________________________________________
-"
+" [yaml-ce]
+
+" [fugitive-gitlab.vim-cs]
+let g:fugitive_gitlab_domains = ['https://git.adfinis-sygroup.ch']
+" [fugitive-gitlab.vim-ce]
+
 " NERDTress File highlighting ---------------------
 function! NERDTreeHighlightFile(extension, fg, guifg)
  exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg=none ctermfg='. a:fg .' guibg=#2E3440 guifg='. a:guifg
