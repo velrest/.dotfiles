@@ -140,6 +140,7 @@ call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 " _______________________________________________
 
 " NERDTree -------------------------------------
+let g:NERDTreeWinSize=30
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
