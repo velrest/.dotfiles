@@ -7,6 +7,8 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 " file broser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+" Git highlighting for nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " fuzzy finder for files
 Plug 'ctrlpvim/ctrlp.vim'
 " editorconfig 
@@ -25,8 +27,6 @@ Plug 'prettier/vim-prettier', {
 Plug 'mustache/vim-mustache-handlebars'
 " theme
 Plug 'arcticicestudio/nord-vim'
-" icons for nerdtree
-Plug 'ryanoasis/vim-devicons'
 " completion
 Plug 'Shougo/deoplete.nvim'
 " dependecy of deoplete	
@@ -37,15 +37,12 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'w0rp/ale'
 " lightline integration for ale
 Plug 'maximbaz/lightline-ale'
-
 " show git changes in vim
 Plug 'airblade/vim-gitgutter'
 "Indent Guides
 Plug 'nathanaelkane/vim-indent-guides'
 " To display gitbranch in lightline
 Plug 'itchyny/vim-gitbranch'
-" toggle booleans
-Plug 'sagarrakshe/toggle-bool'
 " git integration
 Plug 'tpope/vim-fugitive'
 " gitlab integration for vim-fugitive
@@ -110,7 +107,6 @@ noremap <Right> <NOP>
 let mapleader=";"
 map <leader>f :NERDTreeFind<cr>
 map <leader>t :NERDTreeToggle<cr>
-map <leader>tb :ToggleBool<cr>
 map <leader>so :so %<cr>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//gc<left><left><left>
 
@@ -284,31 +280,3 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:fugitive_gitlab_domains = ['https://git.adfinis-sygroup.ch']
 " [fugitive-gitlab.vim-ce]
 
-" NERDTress File highlighting ---------------------
-function! NERDTreeHighlightFile(extension, fg, guifg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg=none ctermfg='. a:fg .' guibg=#2E3440 guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('jade', 'green', 'green')
-call NERDTreeHighlightFile('ini', 'yellow', 'yellow')
-call NERDTreeHighlightFile('md', 'blue', '#3366FF')
-call NERDTreeHighlightFile('yml', 'yellow', 'yellow')
-call NERDTreeHighlightFile('config', 'yellow', 'yellow')
-call NERDTreeHighlightFile('conf', 'yellow', 'yellow')
-call NERDTreeHighlightFile('json', 'yellow', 'yellow')
-call NERDTreeHighlightFile('html', 'yellow', 'yellow')
-call NERDTreeHighlightFile('styl', 'cyan', 'cyan')
-call NERDTreeHighlightFile('css', 'cyan', 'cyan')
-call NERDTreeHighlightFile('coffee', 'Red', 'red')
-call NERDTreeHighlightFile('js', 'Red', '#ffa500')
-call NERDTreeHighlightFile('php', 'Magenta', '#ff00ff')
-call NERDTreeHighlightFile('ds_store', 'Gray', '#686868')
-call NERDTreeHighlightFile('gitconfig', 'Gray', '#686868')
-call NERDTreeHighlightFile('gitignore', 'Gray', '#686868')
-call NERDTreeHighlightFile('bashrc', 'Gray', '#686868')
-call NERDTreeHighlightFile('bashprofile', 'Gray', '#686868')
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
