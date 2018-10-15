@@ -49,6 +49,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 " github integration for vim-fugitive
 Plug 'tpope/vim-rhubarb'
+" TODO: Maybe add later
+ "Better ember support
+"Plug 'dsawardekar/ember.vim'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
