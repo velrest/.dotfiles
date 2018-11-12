@@ -264,6 +264,7 @@ hide_edge_borders smart
 new_window none
 
 # Autostart apps
+exec --no-startup-id dockd --daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id "compton -cC"
 exec --no-startup-id nm-applet

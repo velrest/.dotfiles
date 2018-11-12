@@ -20,9 +20,7 @@ Plug 'itchyny/lightline.vim'
 " fuzzy finder for file content
 Plug 'mileszs/ack.vim'
 " vim prettier integration
-Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " syntax highlighting for hbs
 Plug 'mustache/vim-mustache-handlebars'
 " theme
