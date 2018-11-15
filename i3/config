@@ -230,6 +230,7 @@ bar {
 # floating windows
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Kalu"] floating enable
+for_window [class="Spotify"] move scratchpad
 
 ## Multimedia Keys
 
@@ -273,3 +274,4 @@ exec --no-startup-id nitrogen --set-tiled ~/.config/i3/bg
 exec --no-startup-id glances -01w
 exec --no-startup-id notify-send -u critical -t 120000 "Timed und Arbeitsjournal" "Mach nos timedctl und Arbeitsjournal"
 exec --no-startup-id "sleep 2s && kalu"
+exec spotify
