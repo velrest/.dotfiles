@@ -50,6 +50,7 @@ Plug 'tpope/vim-rhubarb'
 " TODO: Maybe add later
  "Better ember support
 "Plug 'dsawardekar/ember.vim'
+Plug 'ambv/black'
 
 call plug#end()            " required
 "__________________________________________________________________________________________________
@@ -228,6 +229,9 @@ cnoreabbrev Ack Ack!
 cnoreabbrev AckFromSearch AckFromSearch!
 " _______________________________________________
 
+" [black-cs] python formatting
+autocmd BufWritePre *.py execute ':Black'
+" [black-ce]
 
 " Prettier --------------------------------------
 " when running at every change you may want to disable quickfix
