@@ -63,6 +63,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   zsh-nvm
+  thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
