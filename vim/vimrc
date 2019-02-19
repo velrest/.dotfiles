@@ -111,6 +111,8 @@ map <leader>f :NERDTreeFind<cr>
 map <leader>t :NERDTreeToggle<cr>
 map <leader>so :so %<cr>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//gc<left><left><left>
+vnoremap <Leader>s :s//gc<left><left><left>
+nnoremap <Leader>gc :!git ci<CR>
 
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>

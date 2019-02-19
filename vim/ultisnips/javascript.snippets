@@ -95,22 +95,22 @@ endsnippet
 
 # model attribute of type string
 snippet mas
-,${1:var}: attr('string')
+${1:var}: attr('string'),
 endsnippet
 
 # model attribute of type number
 snippet man
-,${1:var}: attr('number')
+${1:var}: attr('number'),
 endsnippet
 
 # model attribute of type boolean
 snippet mab
-,${1:var}: attr('boolean')
+${1:var}: attr('boolean'),
 endsnippet
 
 # model attribute
 snippet ma
-,${1:var}: ${2:method}('${3:type}')
+${1:var}: ${2:method}('${3:type}'),
 endsnippet
 
 # test helper with await
@@ -127,3 +127,20 @@ endsnippet
 snippet ad
 assert.dom('${1:selector}').${2}(${3})
 endsnippet
+
+# ember testing
+snippet tpt
+await pauseTest()
+endsnippet
+
+# try with sentry
+snippet sentry
+try	{
+	${1://code}
+} catch (e) {
+  reportError(e);
+  this.notify.error(this.intl.t("global.error"));
+	${2://handling}
+}
+endsnippet
+

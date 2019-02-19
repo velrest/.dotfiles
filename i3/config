@@ -202,6 +202,20 @@ mode "$screen_setup" {
 
 bindsym $mod+Shift+s mode "$screen_setup"
 
+# Mode for clipster shortcuts
+set $clipster (c) clipboard, (p) primary
+mode "$clipster" {
+    bindsym c exec --no-startup-id clipster -sc, mode "default"
+    bindsym p exec --no-startup-id clipster -sp, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+BackSpace mode "$clipster"
+bindsym $mod+BackSpace exec --no-startup-id clipster -sp
+
 # set window colors
 #                       border             background         text                 indicator
 client.focused          $bg-color          $bg-color          $text-color          $indicator-color
@@ -231,6 +245,7 @@ bar {
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Kalu"] floating enable
 for_window [class="Spotify"] move scratchpad
+for_window [class="Blueman-manager"] floating enable
 
 ## Multimedia Keys
 
@@ -256,7 +271,9 @@ bindsym $mod+F7 exec mocp --previous
 bindsym $mod+F8 exec mocp --next
 
 # App shortcuts
-bindsym $mod+b exec "/usr/bin/chromium"
+bindsym $mod+b exec blueman-manager
+bindsym $mod+c exec "/usr/bin/chromium"
+
 
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
@@ -271,7 +288,8 @@ exec --no-startup-id "compton -cC"
 exec --no-startup-id nm-applet
 exec --no-startup-id zsh ~/.config/i3/docked-xrandr-setup.sh
 exec --no-startup-id nitrogen --set-tiled ~/.config/i3/bg
-exec --no-startup-id glances -01w
-exec --no-startup-id notify-send -u critical -t 120000 "Timed und Arbeitsjournal" "Mach nos timedctl und Arbeitsjournal"
 exec --no-startup-id "sleep 2s && kalu"
+exec --no-startup-id safeeyes
+exec --no-startup-id redshift-gtk -t 6000K:4500K
+exec --no-startup-id clipster -d
 exec spotify

@@ -23,11 +23,21 @@ snippet b
 {{/$1}}
 endsnippet
 
-# disable linting
-snippet li
-{{!-- template-lint-disable ${1} --}}
+snippet ac
+<${1:component-name} ${2:params} />
 endsnippet
 
+snippet abc
+<${1:component-name} ${2:params} >
+	${3:content}
+</$1>
+endsnippet
+
+snippet with
+{{#with ${1}}}
+	${2}
+{{/with}}
+endsnippet
 
 # i dont know anymore
 snippet dtag

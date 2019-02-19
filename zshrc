@@ -164,6 +164,8 @@ if [ -z "$DISPLAY" ]; then
 fi
 
 alias dc='docker-compose'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias cat='bat'
 
 #fasd
 eval "$(fasd --init auto)"
