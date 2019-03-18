@@ -1,0 +1,72 @@
+# Handelbars
+
+# log
+snippet l
+{{ log ${1:val} }}
+endsnippet
+
+# value statement
+snippet v
+{{${1:value}}}
+endsnippet
+
+# component
+snippet c
+{{${1:component} ${2:value}}}
+endsnippet
+
+# block component
+snippet b
+{{#${1:tagname} ${2:options}}}
+  ${3:content}
+{{/$1}}
+endsnippet
+
+snippet ac
+<${1:component-name} ${2:params} />
+endsnippet
+
+snippet abc
+<${1:component-name} ${2:params} >
+	${3:content}
+</$1>
+endsnippet
+
+snippet with
+{{#with ${1} as |${2}|}}
+	${3}
+{{/with}}
+endsnippet
+
+snippet each
+{{#each ${1} as |${2}|}}
+	${3:$2}
+{{/each}}
+endsnippet
+
+snippet if
+{{#if ${1}}}
+	${3}
+{{/if}}
+endsnippet
+
+
+snippet unless
+{{#unless ${1}}}
+	${3}
+{{/unless}}
+endsnippet
+
+snippet action
+{{action ${1}}}
+endsnippet
+
+# i dont know anymore
+snippet dtag
+{% ${1:val} ${2:val} %}
+endsnippet
+
+snippet sdtag
+{% ${1:val} %}
+endsnippet
+
