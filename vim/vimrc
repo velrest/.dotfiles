@@ -39,8 +39,6 @@ Plug 'ambv/black', { 'for': 'python' }
 Plug 'tpope/vim-vinegar'
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'leafgarland/typescript-vim'
-" No real usecase for me
-"Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-css-color'
 
@@ -115,10 +113,18 @@ noremap   <silent> <leader>ln   :ALENext<cr>
 noremap   <silent> <leader>lp   :ALEPrevious<cr>
 noremap   <silent> <leader>ll   :ALELast<cr>
 
+"Typora live markdownpreview
+noremap   <silent> <leader>mp   :!typora % &<cr>
+
 " fugitive
 noremap   <silent> <leader>fp   :Gdiff<cr>
 
 " [vim-ce]
+
+" [netrw-cs]
+" Prevent netrw from blocking :qa
+autocmd FileType netrw setl bufhidden=delete
+" [netrw-ce]
 
 " ALE [ale-cs]
 " This is needed as long as
