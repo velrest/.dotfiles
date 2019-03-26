@@ -39,7 +39,8 @@ Plug 'ambv/black', { 'for': 'python' }
 Plug 'tpope/vim-vinegar'
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-eunuch'
+" No real usecase for me
+"Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-css-color'
 

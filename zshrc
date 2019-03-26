@@ -165,7 +165,7 @@ fi
 
 alias dc='docker-compose'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias cat='bat --style="header,grid"'
+alias cat='bat --style="grid"'
 
 #fasd
 eval "$(fasd --init auto)"

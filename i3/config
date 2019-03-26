@@ -212,17 +212,6 @@ mode "$screen_setup" {
 
 bindsym $mod+Shift+s mode "$screen_setup"
 
- #Mode for clipster shortcuts
-#set $clipster (c) clipboard, (p) primary
-#mode "$clipster" {
-    #bindsym c exec --no-startup-id clipster -sc, mode "default"
-    #bindsym p exec --no-startup-id clipster -sp, mode "default"
-
-     #back to normal: Enter or Escape
-    #bindsym Return mode "default"
-    #bindsym Escape mode "default"
-#}
-
 #bindsym $mod+Shift+BackSpace mode "$clipster"
 bindsym $mod+Shift+BackSpace exec --no-startup-id clipster -sp
 bindsym $mod+BackSpace exec --no-startup-id clipster -sc
