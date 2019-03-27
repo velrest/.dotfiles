@@ -33,7 +33,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-gitbranch'
 " git integration
 Plug 'tpope/vim-fugitive'
-Plug 'ambv/black', { 'for': 'python' }
 
 " EXPERIMENTAL are still beeing battle tested
 Plug 'tpope/vim-vinegar'
@@ -221,20 +220,12 @@ cnoreabbrev Ack Ack!
 cnoreabbrev AckFromSearch AckFromSearch!
 " [ack-ce]
 
-" [black-cs] python formatting
-autocmd BufWritePre *.py execute ':Black'
-" [black-ce]
-
 " Indent Guides [vim-indent-guides-cs]
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#343945 ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#2C313C ctermbg=4
 " [vim-indent-guides-ce]
-
-" [vim-todo-list-cs]
-let g:VimTodoListsDatesEnabled = 1
-" [vim-todo-list-ce]
 
 " [vim-signify-cs]
 let g:signify_vcs_list = [ 'git' ]
