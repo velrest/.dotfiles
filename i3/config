@@ -39,6 +39,8 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec termite
+bindsym $mod+Shift+Return exec termite --class floatingTermite
+for_window [class="^floatingTermite$"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -246,6 +248,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Kalu"] floating enable
 for_window [class="Spotify"] move scratchpad
 for_window [class="Blueman-manager"] floating enable
+for_window [class="Pcmanfm"] floating enable
 
 ## Multimedia Keys
 
@@ -277,6 +280,21 @@ bindsym $mod+c exec "/usr/bin/chromium"
 
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
+
+set $tools Timed(t), Mattermost(m), GitLab(g), Sentry(s), WhatsApp(w)
+mode "$tools" {
+    bindsym t exec chromium --app=https://timed.adfinis-sygroup.ch, mode "default"
+    bindsym m exec chromium --app=https://chat.adfinis-sygroup.ch, mode "default"
+    bindsym s exec chromium --app=https://sentry-test.sycloud.ch, mode "default"
+    bindsym w exec chromium --app=https://web.whatsapp.com, mode "default"
+    bindsym g exec chromium --app=https://git.adfinis-sygroup.ch, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+t mode "$tools"
 
 hide_edge_borders smart
 new_window none

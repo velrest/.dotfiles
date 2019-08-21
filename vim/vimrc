@@ -117,6 +117,13 @@ noremap   <silent> <leader>mp   :!typora % &<cr>
 
 " fugitive
 noremap   <silent> <leader>fp   :Gdiff<cr>
+noremap   <silent> <leader>f    :G
+
+noremap   <silent> <leader>sm   :mksession! session.vim<CR>
+noremap   <silent> <leader>sl   :so session.vim<CR>
+
+noremap   <silent> <leader>sy	"+y		
+noremap   <silent> <leader>sp	"+p		
 
 " [vim-ce]
 
@@ -230,3 +237,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#2C313C ctermbg=4
 " [vim-signify-cs]
 let g:signify_vcs_list = [ 'git' ]
 " [vim-signify-ce]
+
+" [vim-fugitive-cs]
+set diffopt+=vertical
+" [vim-fugitive-ce]

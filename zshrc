@@ -64,6 +64,10 @@ plugins=(
   git
   zsh-nvm
   thefuck
+  yarn
+  docker
+  frontend-search
+  themes
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -166,6 +170,7 @@ fi
 alias dc='docker-compose'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias cat='bat --style="grid"'
+alias ical='cal -m'
 
 #fasd
 eval "$(fasd --init auto)"
@@ -174,6 +179,9 @@ eval "$(fasd --init auto)"
 export PATH="/home/jonas/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+#local bin 
+PATH="$PATH:${HOME}/bin"
 
 #yarn 
 PATH="$PATH:$(yarn global bin)"

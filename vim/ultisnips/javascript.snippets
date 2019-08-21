@@ -43,7 +43,7 @@ snippet af
 endsnippet
 
 # function
-snippet f
+snippet f "function"
 function ${1}(${2}) {
 	${3}
 }
@@ -227,6 +227,18 @@ try {
 } catch (${2:e}) {
 	${3}
 }
+endsnippet
+
+snippet task "concurrency task"
+${1:property}: task(function*(${2}) {
+	${3}
+}),
+endsnippet
+
+snippet cp "computed property"
+${1:property}: computed(${2}, function() {
+	${3}
+}),
 endsnippet
 
 priority -50
