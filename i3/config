@@ -281,13 +281,14 @@ bindsym $mod+c exec "/usr/bin/chromium"
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
 
-set $tools Timed(t), Mattermost(m), GitLab(g), Sentry(s), WhatsApp(w)
+set $tools Timed(t), Mattermost(m), GitLab(g), Sentry(s), WhatsApp(w), Keep(k)
 mode "$tools" {
     bindsym t exec chromium --app=https://timed.adfinis-sygroup.ch, mode "default"
     bindsym m exec chromium --app=https://chat.adfinis-sygroup.ch, mode "default"
     bindsym s exec chromium --app=https://sentry-test.sycloud.ch, mode "default"
     bindsym w exec chromium --app=https://web.whatsapp.com, mode "default"
     bindsym g exec chromium --app=https://git.adfinis-sygroup.ch, mode "default"
+    bindsym k exec chromium --app=https://keep.google.com, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
